@@ -1,3 +1,3 @@
-# flappy-bird-assets
+# Flappy Bird Test Game
 
-Assets to develop the Flappy Bird Game
+My attempt and learning pygame.
