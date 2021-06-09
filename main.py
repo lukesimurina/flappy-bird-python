@@ -1,5 +1,6 @@
 import pygame
 import sys
+import time
 from random import randrange
 
 
@@ -16,6 +17,8 @@ jump_height = 4
 # -700 Middle
 # -850 highest
 
+# SOUNDS
+
 
 def ypos(oldvalue):
     oldmin = 0
@@ -26,6 +29,13 @@ def ypos(oldvalue):
 
 
 pygame.init()
+
+# SOUNDS
+flap = pygame.mixer.Sound("audio/wing.wav")
+flap.set_volume(0.1)
+hit = pygame.mixer.Sound("audio/hit.wav")
+hit.set_volume(0.1)
+
 pygame.display.set_caption("Flappy Bird")
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
@@ -104,7 +114,8 @@ while running == True:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
-                clicked = True
+                pygame.mixer.Sound.play(flap)
+                pygame.mixer.music.stop()
                 bird_movement = 0
                 bird_movement -= jump_height
 
@@ -153,6 +164,9 @@ while running == True:
 
     for pipe in pipes:
         if pygame.Rect.colliderect(bird_rect, pipe) == True:
+            pygame.mixer.Sound.play(hit)
+            pygame.mixer.music.stop()
+            time.sleep(1)
             running = False
 
     pygame.display.update()
