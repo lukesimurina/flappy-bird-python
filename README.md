@@ -1,3 +1,3 @@
 # Flappy Bird Test Game
 
-My attempt and learning pygame.
+My attempt at learning pygame.
